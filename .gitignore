@@ -1,7 +1,7 @@
-./dist
-./build
+/dist/
+/build/
 *.class
 .jar
-./nbproject
-./text
+/nbproject/
+/text/
 .mf
