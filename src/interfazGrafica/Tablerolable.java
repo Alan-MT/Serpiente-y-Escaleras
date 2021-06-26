@@ -6,9 +6,14 @@
 package interfazGrafica;
 
 import Jugadores.Players;
+import Tablero.Tablero;
 import java.util.Vector;
 import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,6 +26,7 @@ public class Tablerolable extends javax.swing.JFrame {
      */
     public Tablerolable() {
         initComponents();
+
     }
 
     /**
@@ -37,6 +43,7 @@ public class Tablerolable extends javax.swing.JFrame {
         Lanzar = new javax.swing.JButton();
         dadoun = new javax.swing.JLabel();
         dado2s = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,81 +67,92 @@ public class Tablerolable extends javax.swing.JFrame {
 
         dado2s.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados imagenes/dado2.png"))); // NOI18N
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 558, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(229, 602, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(dado2s)
-                        .addGap(80, 80, 80))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Lanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(dado2s))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Lanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(Lanzar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dado2s))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(Lanzar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dado2s)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
 
-    public void Dadod(Vector<Players> juego){
-        int dado1 = (int)(Math.random()*6)+1;
-        int dado2 = (int)(Math.random()*6)+1;
-        
-        Icon uno = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado1.png"));
-        Icon dos = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado2.png"));
-        Icon tres = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado3.png"));
-        Icon cua = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado4.png"));
-        Icon cin = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado5.png"));
-        Icon seis = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado6.png"));
-        
-        switch(dado1){
-            case 1: dadoun.setIcon(uno); break;
-            case 2: dadoun.setIcon(dos); break;
-            case 3: dadoun.setIcon(tres); break;
-            case 4: dadoun.setIcon(cua); break;
-            case 5: dadoun.setIcon(cin); break;
-            case 6: dadoun.setIcon(seis); break;
-        }
-        switch(dado2){
-            case 1: dado2s.setIcon(uno); break;
-            case 2: dado2s.setIcon(dos); break;
-            case 3: dado2s.setIcon(tres); break;
-            case 4: dado2s.setIcon(cua); break;
-            case 5: dado2s.setIcon(cin); break;
-            case 6: dado2s.setIcon(seis); break;
-        }
-        
-        int resultado = dado1+dado2;
-        JOptionPane.showMessageDialog(null, " Resultado"+resultado);
-        
+
+    public JButton getLanzar() {
+        return Lanzar;
     }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public JLabel getDado2s() {
+        return dado2s;
+    }
+
+    public JLabel getDadoun() {
+        return dadoun;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+    
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Lanzar;
     private javax.swing.JLabel dado2s;
     private javax.swing.JLabel dadoun;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
