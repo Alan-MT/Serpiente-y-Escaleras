@@ -1,0 +1,7 @@
+./dist
+./build
+*.class
+.jar
+./nbproject
+./text
+.mf
