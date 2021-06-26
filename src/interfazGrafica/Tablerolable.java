@@ -5,6 +5,11 @@
  */
 package interfazGrafica;
 
+import Jugadores.Players;
+import java.util.Vector;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alanm
@@ -27,57 +32,110 @@ public class Tablerolable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        Lanzar = new javax.swing.JButton();
+        dadoun = new javax.swing.JLabel();
+        dado2s = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Posicion", "Nombre", "Turno"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        Lanzar.setText("Lanzar");
+
+        dadoun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados imagenes/dado1.png"))); // NOI18N
+        dadoun.setMaximumSize(new java.awt.Dimension(368, 309));
+
+        dado2s.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados imagenes/dado2.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(229, 602, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(dado2s)
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Lanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(Lanzar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dado2s))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tablerolable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tablerolable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tablerolable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tablerolable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+  
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tablerolable().setVisible(true);
-            }
-        });
+    public void Dadod(Vector<Players> juego){
+        int dado1 = (int)(Math.random()*6)+1;
+        int dado2 = (int)(Math.random()*6)+1;
+        
+        Icon uno = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado1.png"));
+        Icon dos = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado2.png"));
+        Icon tres = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado3.png"));
+        Icon cua = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado4.png"));
+        Icon cin = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado5.png"));
+        Icon seis = new javax.swing.ImageIcon(getClass().getResource("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Dados imagenes\\dado6.png"));
+        
+        switch(dado1){
+            case 1: dadoun.setIcon(uno); break;
+            case 2: dadoun.setIcon(dos); break;
+            case 3: dadoun.setIcon(tres); break;
+            case 4: dadoun.setIcon(cua); break;
+            case 5: dadoun.setIcon(cin); break;
+            case 6: dadoun.setIcon(seis); break;
+        }
+        switch(dado2){
+            case 1: dado2s.setIcon(uno); break;
+            case 2: dado2s.setIcon(dos); break;
+            case 3: dado2s.setIcon(tres); break;
+            case 4: dado2s.setIcon(cua); break;
+            case 5: dado2s.setIcon(cin); break;
+            case 6: dado2s.setIcon(seis); break;
+        }
+        
+        int resultado = dado1+dado2;
+        JOptionPane.showMessageDialog(null, " Resultado"+resultado);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Lanzar;
+    private javax.swing.JLabel dado2s;
+    private javax.swing.JLabel dadoun;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
