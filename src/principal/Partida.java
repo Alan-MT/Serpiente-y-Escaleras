@@ -7,8 +7,8 @@ import Jugadores.Players;
 import Tablero.Dado;
 import Tablero.Tablero;
 import interfazGrafica.Tablerolable;
-import static java.awt.Frame.NORMAL;
-import static java.awt.image.ImageObserver.WIDTH;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -24,6 +24,7 @@ public class Partida {
     private int contador = 0;
     private Dado dado;
     private Vector<Players> aleatorio;
+    private Tiempo horario;
 
     public Partida() {
         this.rg = new Registro();
@@ -32,6 +33,7 @@ public class Partida {
         this.lab = new Tablerolable();
         this.dado = new Dado();
         this.aleatorio = new Vector<>();
+        this.horario = new Tiempo(lab.getHorario());
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -59,7 +61,11 @@ public class Partida {
         this.rg.getIniciar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                contadorJugadores();
+                Collections.sort(jugadores);
+                contadorJugadores(); 
+                lab.tablaposicion(jugadores);
+                
+                
             }
         });
 
@@ -95,10 +101,13 @@ public class Partida {
             lab.setVisible(true);
             Tablero tab = new Tablero(lab.getjPanel1());
             tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()));
-            
+            horario.start();
         } else {
             JOptionPane.showMessageDialog(null, "Debe se minimo 2 Jugadores");
         }
     }
+    
+
+            
 
 }

@@ -6,12 +6,9 @@
 package interfazGrafica;
 
 import Jugadores.Players;
-import Tablero.Tablero;
 import java.util.Vector;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +42,7 @@ public class Tablerolable extends javax.swing.JFrame {
         dadoun = new javax.swing.JLabel();
         dado2s = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        Horario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,13 +79,23 @@ public class Tablerolable extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        Horario.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        Horario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Horario.setText(",");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Horario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(239, 239, 239)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -111,10 +119,12 @@ public class Tablerolable extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Horario)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(Lanzar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -146,21 +156,29 @@ public class Tablerolable extends javax.swing.JFrame {
         return jPanel1;
     }
 
-    public void mostrarJugadoresEnTabla(Vector<Players> jugadores) {
+    public JLabel getHorario() {
+        return Horario;
+    }
+    
+
+    public void tablaposicion(Vector<Players> jugadores) {
         DefaultTableModel mode = (DefaultTableModel) getjTable1().getModel();
+        int i = 0;
         mode.setRowCount(0);
         for (Players j : jugadores) {
             Object[] row = new Object[3];
-            row[0] = j.getId();
+            row[0] = i;
             row[1] = j.getNombre();
-            row[2] = j.getApellido();
+            row[2] = j.Penalizacion(j.isPenalizado());
             mode.addRow(row);
+            i+=1;
         }
         getjTable1().setModel(mode);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Horario;
     private javax.swing.JButton Lanzar;
     private javax.swing.JLabel dado2s;
     private javax.swing.JLabel dadoun;

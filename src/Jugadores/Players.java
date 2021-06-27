@@ -1,16 +1,18 @@
 package Jugadores;
 
-public class Players {
-    
+public class Players implements Comparable<Players> {
+
     private String nombre, apellido;
     private int id, PartidaG, PartidaP, PartidasJ;
+    private boolean Penalizado;
 
     public Players() {
     }
+
     /**
-     * 
+     *
      * @param nombre
-     * @param apellido 
+     * @param apellido
      */
     public Players(String nombre, String apellido) {
         this.nombre = nombre;
@@ -19,11 +21,12 @@ public class Players {
         this.PartidaG = 0;
         this.PartidaP = 0;
         this.PartidasJ = 0;
+        this.Penalizado = true;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getNombre() {
         return nombre;
@@ -73,13 +76,40 @@ public class Players {
         this.PartidasJ = PartidasJ;
     }
 
+    public boolean isPenalizado() {
+        return Penalizado;
+    }
+
+    public void setPenalizado(boolean Penalizado) {
+        this.Penalizado = Penalizado;
+    }
+
     /**
-     * Se genera un ID de 3 digitos
-    //para inicializar un jugador
+     * Se genera un ID de 3 digitos //para inicializar un jugador
+     *
      * @return id
      */
-    public int generarid(){
-        return (int)(Math.random()*(999-100)+100);
+    public int generarid() {
+        return (int) (Math.random() * (999 - 100) + 100);
     }
-    
+
+    public String Penalizacion(boolean turno) {
+        if (turno) {
+            return "En turno";
+        } else {
+            return "Perdio un turno";
+        }
+    }
+
+    @Override
+    public int compareTo(Players o) {
+        if (o.getId() > id) {
+            return -1;
+        } else if (o.getId() > id) {
+            return 0;
+        } else{
+            return 1;
+        }
+    }
+
 }

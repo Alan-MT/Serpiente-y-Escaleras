@@ -24,10 +24,19 @@ public class Tablero {
         columna = 300 / columna;
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                JLabel lable = new JLabel("lbl1" + String.valueOf(i + 1) + ", " + String.valueOf(i + 1));
-                lable.setBounds(fila * i, columna * j, fila, columna);
-                lable.setForeground(Color.blue);
-                matriz[i][j] = lable;
+                if (i % 2 == 0) {
+                    JLabel lable = new JLabel("lbl1" + String.valueOf(i + 1) + ", " + String.valueOf(i + 1));
+                    lable.setBounds(fila * i, columna * j, fila, columna);
+                    lable.setForeground(Color.blue);
+                    lable.setOpaque(true);
+                    lable.setBackground(Color.BLACK);
+                    matriz[i][j] = lable;
+                } else {
+                    JLabel lable = new JLabel("lbl1" + String.valueOf(i + 1) + ", " + String.valueOf(i + 1));
+                    lable.setBounds(fila * i, columna * j, fila, columna);
+                    matriz[i][j] = lable;
+
+                }
             }
         }
 
@@ -38,5 +47,5 @@ public class Tablero {
         }
         panel.repaint();
     }
-    
+
 }
