@@ -23,6 +23,7 @@ public class Partida {
     private Tablerolable lab;
     private int contador = 0;
     private Dado dado;
+    private Vector<Players> aleatorio;
 
     public Partida() {
         this.rg = new Registro();
@@ -30,6 +31,7 @@ public class Partida {
         this.jugadores = new Vector<>();
         this.lab = new Tablerolable();
         this.dado = new Dado();
+        this.aleatorio = new Vector<>();
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -90,9 +92,10 @@ public class Partida {
      */
     public void contadorJugadores() {
         if (contador > 1) {
+            lab.setVisible(true);
             Tablero tab = new Tablero(lab.getjPanel1());
             tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()));
-            lab.setVisible(true);
+            
         } else {
             JOptionPane.showMessageDialog(null, "Debe se minimo 2 Jugadores");
         }
