@@ -163,13 +163,14 @@ public class Tablerolable extends javax.swing.JFrame {
 
     public void tablaposicion(Vector<Players> jugadores) {
         DefaultTableModel mode = (DefaultTableModel) getjTable1().getModel();
-        int i = 0;
+        int i = 1;
         mode.setRowCount(0);
         for (Players j : jugadores) {
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = i;
             row[1] = j.getNombre();
             row[2] = j.Penalizacion(j.isPenalizado());
+            row[3] = i;
             mode.addRow(row);
             i+=1;
         }

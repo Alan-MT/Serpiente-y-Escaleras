@@ -25,7 +25,7 @@ public class Manejador {
     private Dado dado;
     private Vector<Players> aleatorio;
     private Tiempo horario;
-
+    private Tablero tab;
     public Manejador() {
         this.rg = new Registro();
         rg.setVisible(true);
@@ -34,6 +34,7 @@ public class Manejador {
         this.dado = new Dado();
         this.aleatorio = new Vector<>();
         this.horario = new Tiempo(lab.getHorario());
+        this.tab = new Tablero(lab.getjPanel1());
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -64,6 +65,7 @@ public class Manejador {
                 Collections.sort(jugadores);
                 contadorJugadores(); 
                 lab.tablaposicion(jugadores);
+                rg.dispose();
                 
                 
             }
@@ -73,6 +75,7 @@ public class Manejador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dado.Dadod(lab.getDadoun(), lab.getDado2s());
+                tab.MatrizArchivos();
             }
         });
     }
@@ -99,7 +102,6 @@ public class Manejador {
     public void contadorJugadores() {
         if (contador > 1) {
             lab.setVisible(true);
-            Tablero tab = new Tablero(lab.getjPanel1());
             tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()));
             horario.start();
         } else {

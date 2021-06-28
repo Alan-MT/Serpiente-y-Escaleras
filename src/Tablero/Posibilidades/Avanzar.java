@@ -5,6 +5,7 @@
  */
 package Tablero.Posibilidades;
 
+import Jugadores.Players;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -14,23 +15,26 @@ import javax.swing.JLabel;
  *
  * @author alanm
  */
-public class Avanzar {
+public class Avanzar extends Casilla {
 
     public Avanzar() {
 
     }
 
-    public JLabel Avanzar(JLabel avanza, int fila, int columna) {
-        //imagen origen
+
+
+    @Override
+    public JLabel subirImagen(JLabel image, int fila, int columna) {
         Image img = new ImageIcon(getClass().getResource("/Tablero/imagenesPosi/Avanzar.png")).getImage();
-//escala imagen
         Image newimg = img.getScaledInstance(fila, columna, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(newimg);
-//asigna a componenente JLabel
-        avanza.setIcon(imageIcon);
-       // Icon perde = new javax.swing.ImageIcon(getClass().getResource("/Tablero/imagenesPosi/Avanzar.png"));
-       // avanza.setIcon(perde);
-        return avanza;
+        image.setIcon(imageIcon);
+        return image;
+    }
+
+    @Override
+    public void Accion(Players jugPlayers) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
