@@ -3,6 +3,8 @@ package Tablero;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import Tablero.Posibilidades.*;
 
 /**
  *
@@ -24,17 +26,31 @@ public class Tablero {
         columna = 300 / columna;
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                if (i % 2 == 0) {
-                    JLabel lable = new JLabel("lbl1" + String.valueOf(i + 1) + ", " + String.valueOf(i + 1));
-                    lable.setBounds(fila * i, columna * j, fila, columna);
-                    lable.setForeground(Color.blue);
-                    lable.setOpaque(true);
-                    lable.setBackground(Color.BLACK);
-                    matriz[i][j] = lable;
-                } else {
-                    JLabel lable = new JLabel("lbl1" + String.valueOf(i + 1) + ", " + String.valueOf(i + 1));
-                    lable.setBounds(fila * i, columna * j, fila, columna);
-                    matriz[i][j] = lable;
+
+                switch ((int) (Math.random() * 3)) {
+                    case 0:
+                        JLabel vacio = new JLabel();
+                        vacio.setBounds(fila * i, columna * j, fila, columna);
+                        vacio.setOpaque(true);
+                        vacio.setBackground(Color.BLACK);
+                        matriz[i][j] = vacio;
+                        break;
+                    case 1:
+                        JLabel lables = new JLabel();
+                        PIerdeTurno pt = new PIerdeTurno();
+                        pt.pierdeturno(lables, fila, columna);
+                        lables.setBounds(fila * i, columna * j, fila, columna);
+                        matriz[i][j] = lables;
+                        break;
+                    case 2:
+                        JLabel avanza = new JLabel();
+                        Avanzar p = new Avanzar();
+                        p.Avanzar(avanza, fila, columna);
+                        avanza.setBounds(fila * i, columna * j, fila, columna);
+                        matriz[i][j] = avanza;
+                        break;
+                    case 3:
+                        break;
 
                 }
             }
@@ -48,4 +64,17 @@ public class Tablero {
         panel.repaint();
     }
 
+    public void MatrizArchivos() {
+
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public JLabel[][] getMatriz() {
+        return matriz;
+    }
+
+    
 }

@@ -1,7 +1,5 @@
 package Tablero;
 
-import Jugadores.Players;
-import java.util.Vector;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,7 +10,7 @@ public class Dado {
         
     }
     
-        public void Dadod(JLabel dadoun,JLabel dado2s) {
+        public int Dadod(JLabel dadoun,JLabel dado2s) {
         int dado1 = (int) (Math.random() * 6) + 1;
         int dado2 = (int) (Math.random() * 6) + 1;
 
@@ -65,7 +63,7 @@ public class Dado {
         }
 
         int resultado = dado1 + dado2;
-        JOptionPane.showMessageDialog(null, " Resultado" + resultado);
-
+        JOptionPane.showMessageDialog(null, " Resultado " + resultado);
+        return resultado;
     }
 }
