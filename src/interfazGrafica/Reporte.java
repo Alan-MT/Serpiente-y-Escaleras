@@ -5,7 +5,7 @@
  */
 package interfazGrafica;
 
-import Archivos.LectorBinario;
+import ArchivosBina.LectorBinario;
 import Jugadores.Players;
 import java.io.FileNotFoundException;
 import java.io.IOException;

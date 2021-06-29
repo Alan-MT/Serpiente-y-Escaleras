@@ -1,5 +1,6 @@
 package principal;
 
+import ArchivosBina.EscritorBinario;
 import interfazGrafica.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,6 @@ import interfazGrafica.Tablerolable;
 import java.util.Collections;
 import java.util.Vector;
 import javax.swing.JOptionPane;
-import Archivos.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -163,15 +163,15 @@ public class Manejador {
             int ganador = jug.getPartidaG();
             ganador += 1;
             jug.setPartidaG(ganador);
-            JOptionPane.showMessageDialog(null, "Bien hecho Ganador"+jug.getNombre());
+            JOptionPane.showMessageDialog(null, "Bien hecho Ganador  "+jug.getNombre());
             for (Players j : getJugadores()) {
                 int pJugadas = j.getPartidasJ();
                 pJugadas += 1;
                 j.setPartidasJ(pJugadas);
                 if (j.getFicha().getPosicion() < tab.getMatriz().length + tab.getMatriz()[0].length) {
-                    int Perdedores = jug.getPartidaP();
+                    int Perdedores = j.getPartidaP();
                     Perdedores += 1;
-                    jug.setPartidaP(Perdedores);
+                    j.setPartidaP(Perdedores);
                     
                 }
             }

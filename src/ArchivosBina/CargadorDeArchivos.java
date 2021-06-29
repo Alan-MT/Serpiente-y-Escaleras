@@ -1,4 +1,4 @@
-package Archivos;
+package ArchivosBina;
 
 
 import Jugadores.Players;

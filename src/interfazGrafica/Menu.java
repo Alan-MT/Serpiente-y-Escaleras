@@ -6,9 +6,8 @@ package interfazGrafica;
  * and open the template in the editor.
  */
 
-import Archivos.LectorBinario;
+import ArchivosBina.LectorBinario;
 import Jugadores.Players;
-import interfazGrafica.Reporte;
 import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -108,14 +107,16 @@ public class Menu extends javax.swing.JFrame {
            Reporte r = new Reporte();
             LectorBinario lec = new LectorBinario();
             Vector<Players> jug = new Vector<>();
+       
             try {
                 lec.leerjugadoras(jug);
-            } catch (IOException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+                r.ReporteJugadoreas(jug);
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-           r.ReporteJugadoreas(jug);
+                
+
+           
            r.setVisible(true);
             
         
@@ -127,6 +128,7 @@ public class Menu extends javax.swing.JFrame {
         }
 
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;

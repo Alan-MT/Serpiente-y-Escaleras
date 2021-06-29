@@ -14,6 +14,7 @@ public class Players implements Comparable<Players> {
  * Cosntructor para cargar los archivos
  * @param nombre
  * @param apellido
+     * @param id
  * @param PartidaG
  * @param PartidaP
  * @param PartidasJ 
