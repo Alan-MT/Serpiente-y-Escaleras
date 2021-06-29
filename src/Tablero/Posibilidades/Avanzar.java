@@ -7,7 +7,6 @@ package Tablero.Posibilidades;
 
 import Jugadores.Players;
 import java.awt.Image;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -20,9 +19,6 @@ public class Avanzar extends Casilla {
     public Avanzar() {
 
     }
-
-
-
     @Override
     public JLabel subirImagen(JLabel image, int fila, int columna) {
         Image img = new ImageIcon(getClass().getResource("/Tablero/imagenesPosi/Avanzar.png")).getImage();

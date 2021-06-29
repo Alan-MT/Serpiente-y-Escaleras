@@ -3,7 +3,6 @@ package Tablero;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import Tablero.Posibilidades.*;
 
 /**
@@ -19,11 +18,9 @@ public class Tablero {
         this.panel = panel;
     }
 
-    public void crearMatriz(int fila, int columna) {
+    public void crearMatriz(int fila, int columna, PIerdeTurno pt, Avanzar p, subida sub, bajada ba, Retrocede r) {
         panel.removeAll();
         matriz = new JLabel[fila][columna];
-        int fi = fila;
-        int col = columna;
         fila = 600 / fila;
         columna = 300 / columna;
         for (int i = 0; i < matriz.length; i++) {
@@ -35,7 +32,7 @@ public class Tablero {
                     vacio4.setForeground(Color.red);
                     vacio4.setBackground(Color.WHITE);
                     matriz[i][j] = vacio4;
-                } else if (j+1 == matriz[0].length && i+1  == matriz.length) {
+                } else if (j + 1 == matriz[0].length && i + 1 == matriz.length) {
                     JLabel vacio5 = new JLabel("FIN", JLabel.CENTER);
                     vacio5.setBounds(fila * i, columna * j, fila, columna);
                     vacio5.setOpaque(true);
@@ -54,35 +51,33 @@ public class Tablero {
                             break;
                         case 1:
                             JLabel lables = new JLabel();
-                            PIerdeTurno pt = new PIerdeTurno();
                             pt.subirImagen(lables, fila, columna);
                             lables.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = lables;
                             break;
                         case 2:
                             JLabel avanza = new JLabel();
-                            Avanzar p = new Avanzar();
+
                             p.subirImagen(avanza, fila, columna);
                             avanza.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = avanza;
                             break;
                         case 3:
                             JLabel subida = new JLabel();
-                            subida sub = new subida();
+
                             sub.subirImagen(subida, fila, columna);
                             subida.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = subida;
                             break;
                         case 4:
                             JLabel bajar = new JLabel();
-                            bajada ba = new bajada();
+
                             ba.subirImagen(bajar, fila, columna);
                             bajar.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = bajar;
                             break;
                         case 5:
                             JLabel retorc = new JLabel();
-                            Retrocede r = new Retrocede();
                             r.subirImagen(retorc, fila, columna);
                             retorc.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = retorc;
@@ -123,15 +118,21 @@ public class Tablero {
         panel.repaint();
     }
 
-    public void MatrizArchivos() {
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
-                panel.add(matriz[i][j]);
-            }
+
+    public String comparar(Object ob) {
+        if (ob instanceof PIerdeTurno) {
+            return "pierde";
+        } else if (ob instanceof Avanzar) {
+            return "avanza";
+        } else if (ob instanceof Retrocede) {
+            return "Retro";
+        } else if (ob instanceof bajada) {
+            return "bajar";
+        } else if (ob instanceof subida) {
+            return "subir";
+        } else {
+            return "nada";
         }
-
-        panel.repaint();
-
     }
 
     public JPanel getPanel() {

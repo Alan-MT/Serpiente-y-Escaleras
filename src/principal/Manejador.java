@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Jugadores.Players;
 import Tablero.Dado;
+import Tablero.Ficha.Ficha;
+import Tablero.Posibilidades.Avanzar;
+import Tablero.Posibilidades.PIerdeTurno;
+import Tablero.Posibilidades.Retrocede;
+import Tablero.Posibilidades.bajada;
+import Tablero.Posibilidades.subida;
 import Tablero.Tablero;
 import interfazGrafica.Tablerolable;
 import java.util.Collection;
@@ -23,18 +29,30 @@ public class Manejador {
     private Tablerolable lab;
     private int contador = 0;
     private Dado dado;
-    private Vector<Players> aleatorio;
     private Tiempo horario;
     private Tablero tab;
+    private PIerdeTurno pt;
+    private Avanzar p;
+    private subida sub;
+    private bajada ba;
+    private Retrocede r;
+    private Partida part;
+
+
     public Manejador() {
         this.rg = new Registro();
         rg.setVisible(true);
         this.jugadores = new Vector<>();
         this.lab = new Tablerolable();
         this.dado = new Dado();
-        this.aleatorio = new Vector<>();
         this.horario = new Tiempo(lab.getHorario());
         this.tab = new Tablero(lab.getjPanel1());
+        this.pt = new PIerdeTurno();
+        this.p  = new Avanzar();
+        this.sub  = new subida();
+        this.ba  = new bajada();
+        this.r  = new Retrocede();
+        this.part = new Partida();
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -63,11 +81,10 @@ public class Manejador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Collections.sort(jugadores);
-                contadorJugadores(); 
+                contadorJugadores();
                 lab.tablaposicion(jugadores);
                 rg.dispose();
-                
-                
+
             }
         });
 
@@ -75,9 +92,17 @@ public class Manejador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dado.Dadod(lab.getDadoun(), lab.getDado2s());
-                tab.MatrizArchivos();
+                MatrizArchivos();
+                siguienteJugador();
+                lab.tablaposicion(jugadores);
+
             }
         });
+    }
+
+    public void siguienteJugador() {
+        getJugadores().add(getJugadores().get(0));
+        getJugadores().remove(0);
     }
 
     /**
@@ -88,7 +113,8 @@ public class Manejador {
      */
     public void registrarJugador(String nombre, String apellido) {
         if (contador < 6) {
-            Players jugador = new Players(nombre, apellido);
+            Ficha ficha = new Ficha(ficha(contador));
+            Players jugador = new Players(ficha ,nombre, apellido);
             jugadores.add(jugador);
             contador++;
         } else {
@@ -102,14 +128,43 @@ public class Manejador {
     public void contadorJugadores() {
         if (contador > 1) {
             lab.setVisible(true);
-            tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()));
+            tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()),pt,p,sub,ba,r);
             horario.start();
         } else {
             JOptionPane.showMessageDialog(null, "Debe se minimo 2 Jugadores");
         }
     }
-    
+        public void MatrizArchivos() {
+        for (int i = 0; i < tab.getMatriz().length; i++) {
+            for (int j = 0; j < tab.getMatriz()[0].length; j++) {
+                 System.out.println(tab.getMatriz()[i][j].getName()); 
+                
+            }
+        }
 
-            
+        tab.getPanel().repaint();
+
+    }
+          public String ficha(int numero){
+        if (numero == 1) {
+            return "Amarillo";
+        } else if (numero == 2) {
+            return "Rojo";
+        } else if (numero ==3 ) {
+            return "Azul";
+        } else if (numero == 4) {
+            return "Verde";
+        }if (numero == 5 ) {
+            return "Cafe";
+        } else {
+            return "Negro";
+        }
+
+        
+    }
+
+    public Vector<Players> getJugadores() {
+        return jugadores;
+    }
 
 }

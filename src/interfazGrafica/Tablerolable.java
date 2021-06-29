@@ -42,19 +42,20 @@ public class Tablerolable extends javax.swing.JFrame {
         dadoun = new javax.swing.JLabel();
         dado2s = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        TabladePosicion = new javax.swing.JPanel();
         Horario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Posicion", "Nombre", "Turno"
+                "Posicion", "Nombre", "Turno", "Ficha"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -66,17 +67,32 @@ public class Tablerolable extends javax.swing.JFrame {
 
         dado2s.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados imagenes/dado2.png"))); // NOI18N
 
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 300));
+
+        TabladePosicion.setBackground(new java.awt.Color(204, 204, 204,100));
+        TabladePosicion.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout TabladePosicionLayout = new javax.swing.GroupLayout(TabladePosicion);
+        TabladePosicion.setLayout(TabladePosicionLayout);
+        TabladePosicionLayout.setHorizontalGroup(
+            TabladePosicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 598, Short.MAX_VALUE)
+        );
+        TabladePosicionLayout.setVerticalGroup(
+            TabladePosicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 298, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addComponent(TabladePosicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(TabladePosicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         Horario.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
@@ -96,20 +112,17 @@ public class Tablerolable extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Horario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(239, 239, 239)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(dado2s))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Lanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(dadoun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)
+                            .addComponent(dado2s))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(Lanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(60, 60, 60))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,6 +172,11 @@ public class Tablerolable extends javax.swing.JFrame {
     public JLabel getHorario() {
         return Horario;
     }
+
+    public JPanel getTabladePosicion() {
+        return TabladePosicion;
+    }
+    
     
 
     public void tablaposicion(Vector<Players> jugadores) {
@@ -170,7 +188,7 @@ public class Tablerolable extends javax.swing.JFrame {
             row[0] = i;
             row[1] = j.getNombre();
             row[2] = j.Penalizacion(j.isPenalizado());
-            row[3] = i;
+            row[3] = j.getFicha().getFicha();
             mode.addRow(row);
             i+=1;
         }
@@ -181,6 +199,7 @@ public class Tablerolable extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Horario;
     private javax.swing.JButton Lanzar;
+    private javax.swing.JPanel TabladePosicion;
     private javax.swing.JLabel dado2s;
     private javax.swing.JLabel dadoun;
     private javax.swing.JPanel jPanel1;

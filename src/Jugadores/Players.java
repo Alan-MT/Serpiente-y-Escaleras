@@ -1,10 +1,13 @@
 package Jugadores;
 
+import Tablero.Ficha.Ficha;
+
 public class Players implements Comparable<Players> {
 
     private String nombre, apellido;
     private int id, PartidaG, PartidaP, PartidasJ;
     private boolean Penalizado;
+    private Ficha ficha;
 
     public Players() {
     }
@@ -14,7 +17,7 @@ public class Players implements Comparable<Players> {
      * @param nombre
      * @param apellido
      */
-    public Players(String nombre, String apellido) {
+    public Players(Ficha ficha,String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.id = generarid();
@@ -22,6 +25,7 @@ public class Players implements Comparable<Players> {
         this.PartidaP = 0;
         this.PartidasJ = 0;
         this.Penalizado = true;
+        this.ficha = ficha;
     }
 
     /**
@@ -84,6 +88,11 @@ public class Players implements Comparable<Players> {
         this.Penalizado = Penalizado;
     }
 
+    public Ficha getFicha() {
+        return ficha;
+    }
+    
+
     /**
      * Se genera un ID de 3 digitos //para inicializar un jugador
      *
@@ -100,6 +109,7 @@ public class Players implements Comparable<Players> {
             return "Perdio un turno";
         }
     }
+  
 
     @Override
     public int compareTo(Players o) {
