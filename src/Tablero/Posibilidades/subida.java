@@ -9,17 +9,17 @@ import Jugadores.Players;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author alanm
  */
 public class subida extends Casilla {
-    
-    public subida(){
-        
-    }
 
+    public subida() {
+
+    }
 
     @Override
     public JLabel subirImagen(JLabel image, int fila, int columna) {
@@ -32,7 +32,9 @@ public class subida extends Casilla {
 
     @Override
     public void Accion(Players jugPlayers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int random = (int) (Math.random() * (12 - 7) + 7);
+        jugPlayers.getFicha().aumentarPosicion(random);
+        JOptionPane.showMessageDialog(null, "Subiste");
     }
 
 }

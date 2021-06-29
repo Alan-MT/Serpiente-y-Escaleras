@@ -9,15 +9,16 @@ import Jugadores.Players;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author alanm
  */
 public class Retrocede extends Casilla {
-    
-    public Retrocede(){
-        
+
+    public Retrocede() {
+
     }
 
     @Override
@@ -29,10 +30,11 @@ public class Retrocede extends Casilla {
         return image;
     }
 
-
     @Override
     public void Accion(Players jugPlayers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int random = (int) (Math.random() * (4 - 1) + 1);
+        jugPlayers.getFicha().restarPosicion(random);
+        JOptionPane.showMessageDialog(null, "regresaste" + random + " Casillas");
     }
 
 }

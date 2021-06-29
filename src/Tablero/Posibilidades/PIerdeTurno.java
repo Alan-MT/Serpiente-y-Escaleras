@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class PIerdeTurno extends Casilla{
 
@@ -31,7 +32,8 @@ public class PIerdeTurno extends Casilla{
 
     @Override
     public void Accion(Players jugPlayers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jugPlayers.setPenalizado(false);
+        JOptionPane.showMessageDialog(null, "Perdiste un Turno");    
     }
 
 }

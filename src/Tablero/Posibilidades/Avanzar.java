@@ -9,6 +9,7 @@ import Jugadores.Players;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,13 @@ public class Avanzar extends Casilla {
     public Avanzar() {
 
     }
+    /**
+     * 
+     * @param image
+     * @param fila
+     * @param columna
+     * @return 
+     */
     @Override
     public JLabel subirImagen(JLabel image, int fila, int columna) {
         Image img = new ImageIcon(getClass().getResource("/Tablero/imagenesPosi/Avanzar.png")).getImage();
@@ -30,7 +38,9 @@ public class Avanzar extends Casilla {
 
     @Override
     public void Accion(Players jugPlayers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int random = (int)(Math.random()*(4-1)+1);
+        jugPlayers.getFicha().aumentarPosicion(random);
+        JOptionPane.showMessageDialog(null, "Avanzaste "+random+" Casillas");
     }
 
 }

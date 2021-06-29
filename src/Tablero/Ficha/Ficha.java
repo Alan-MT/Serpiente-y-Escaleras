@@ -41,5 +41,6 @@ public class Ficha {
             setPosicion(1);
         }
     }
+    
 
 }

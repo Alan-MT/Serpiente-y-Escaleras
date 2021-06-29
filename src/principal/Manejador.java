@@ -92,10 +92,7 @@ public class Manejador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jugar();
-                dado.Dadod(lab.getDadoun(), lab.getDado2s());
                 MatrizArchivos();
-                siguienteJugador();
-                lab.tablaposicion(jugadores);
 
             }
         });
@@ -153,6 +150,33 @@ public class Manejador {
 
     }
 
+    public void VerificacionGanador(Players jug) {
+        if (jug.getFicha().getPosicion() >= tab.getMatriz().length + tab.getMatriz()[0].length) {
+            int ganador = jug.getPartidaG();
+            ganador += 1;
+            jug.setPartidaG(ganador);
+            
+            for (Players j : getJugadores()) {
+                int pJugadas = j.getPartidasJ();
+                pJugadas += 1;
+                j.setPartidasJ(pJugadas);
+                if (j.getFicha().getPosicion() < tab.getMatriz().length + tab.getMatriz()[0].length) {
+                    int Perdedores = jug.getPartidaP();
+                    Perdedores += 1;
+                    jug.setPartidaP(Perdedores);
+                    
+                }
+            }
+            lab.setEnabled(false);
+        }
+    }
+
+    /**
+     * Metodo para el designacion de el color de la ficha
+     *
+     * @param numero
+     * @return
+     */
     public String ficha(int numero) {
         if (numero == 1) {
             return "Amarillo";
@@ -162,45 +186,58 @@ public class Manejador {
             return "Azul";
         } else if (numero == 4) {
             return "Verde";
-        }
-        if (numero == 5) {
+        } else if (numero == 5) {
             return "Cafe";
         } else {
             return "Negro";
         }
     }
 
+    /**
+     * Metodo para la jugabilidad
+     */
     private void jugar() {
         Players jugador = getJugadores().get(0);
-        String posicion =""; 
+        String posicion = "";
         jugador.getFicha().aumentarPosicion(dado.Dadod(lab.getDadoun(), lab.getDado2s()));
-        for (int i = 0; i < tab.getMatriz().length; i++) {
-            for (int j = 0; j < tab.getMatriz()[0].length; j++) {
-                if ((i+j) == jugador.getFicha().getPosicion()) {
-                    posicion = tab.comparar(tab.getMatriz()[i][j].getText());
-                    break;
-                }
-                
+        if (jugador.isPenalizado() == true) {
+            for (int i = 0; i < tab.getMatriz().length; i++) {
+                for (int j = 0; j < tab.getMatriz()[0].length; j++) {
+                    if ((i + j) == jugador.getFicha().getPosicion()) {
+                        posicion = tab.comparar(tab.getMatriz()[i][j].getText());
+                        break;
+                    }
 
+                }
             }
+            switch (posicion) {
+                case "Turno":
+                    pt.Accion(jugador);
+                    break;
+                case "subida":
+                    sub.Accion(jugador);
+                    break;
+                case "retorc":
+                    r.Accion(jugador);
+                    break;
+                case "bajar":
+                    ba.Accion(jugador);
+                    break;
+                case "avanza":
+                    p.Accion(jugador);
+                    break;
+                case "FIN":
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Recuerda que perdite un turno");
+            jugador.setPenalizado(true);
         }
-        switch(posicion){
-            case "Turno" :
-                p.Accion(jugador);
-                break;
-            case "subida":
-                break;
-            case "retorc":
-                break;
-            case "bajar":
-                break;
-            case "avanza":
-                break;
-            case "FIN":
-                break;
-            default:
-                break;
-        }
+        VerificacionGanador(jugador);
+        siguienteJugador();
+        lab.tablaposicion(jugadores);
     }
 
     public Vector<Players> getJugadores() {

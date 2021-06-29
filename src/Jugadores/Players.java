@@ -123,26 +123,3 @@ public class Players implements Comparable<Players> {
     }
 
 }
-/*
-javax.swing.ImageIcon@68d030aa
-javax.swing.ImageIcon@68d030aa
-null
-null
-null
-null
-javax.swing.ImageIcon@777824bd
-javax.swing.ImageIcon@777824bd
-javax.swing.ImageIcon@4fcfb57b
-javax.swing.ImageIcon@4fcfb57b
-javax.swing.ImageIcon@66734b39
-javax.swing.ImageIcon@66734b39
-javax.swing.ImageIcon@f4f623d
-javax.swing.ImageIcon@f4f623d
-null
-null
-javax.swing.ImageIcon@3924e2a5
-javax.swing.ImageIcon@3924e2a5
-javax.swing.ImageIcon@b72fc97
-null
-javax.swing.ImageIcon@b72fc97
-*/

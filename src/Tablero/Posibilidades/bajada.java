@@ -4,6 +4,7 @@ import Jugadores.Players;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,9 @@ public class bajada extends Casilla {
 
     @Override
     public void Accion(Players jugPlayers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int random = (int)(Math.random()*(12-7)+7);
+        jugPlayers.getFicha().restarPosicion(random);
+        JOptionPane.showMessageDialog(null, "Bajaste");
     }
 
 }
