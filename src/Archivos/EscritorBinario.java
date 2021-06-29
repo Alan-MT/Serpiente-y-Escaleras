@@ -22,11 +22,11 @@ public class EscritorBinario {
 
     public static final File FILE_JUGADORES = new File("C:\\Users\\alanm\\Documents\\NetBeansProjects\\Practica4\\src\\Archivos\\Jugadores");
 
-    public void guardarJugadores(Vector<Players> jug) throws IOException, FileNotFoundException {
+    public void guardarJugadores(Vector<Players> jug) throws FileNotFoundException, IOException{
         FileOutputStream fileOutput;
         ObjectOutputStream salida;
         for (Players play : jug) {
-            fileOutput = new FileOutputStream(FILE_JUGADORES + "/" +play.getId()+""+ play.getNombre());
+            fileOutput = new FileOutputStream(FILE_JUGADORES + "/" +play.getId()+" "+ play.getNombre());
             salida = new ObjectOutputStream(fileOutput);
             salida.writeObject(play);
             salida.close();

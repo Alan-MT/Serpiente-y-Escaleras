@@ -125,17 +125,17 @@ public class Tablero {
         if (tx == "Turno") {
             return "pierde";
         } else if (tx == "subida") {
-            return "avanza";
+            return "subida";
         } else if (tx == "retorc") {
             return "Retro";
         } else if (tx == "bajar") {
             return "bajar";
         } else if (tx == "avanza") {
-            return "subir";
+            return "avanza";
         } else if (tx == "INICIO") {
-            return "subir";
+            return "nada";
         } else if (tx == "FIN") {
-            return "subir";
+            return "FIN";
         } else if (tx == null) {
             return "nada";
         } else {

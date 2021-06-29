@@ -8,8 +8,23 @@ public class Players implements Comparable<Players> {
     private int id, PartidaG, PartidaP, PartidasJ;
     private boolean Penalizado;
     private Ficha ficha;
-
-    public Players() {
+    
+    
+/**
+ * Cosntructor para cargar los archivos
+ * @param nombre
+ * @param apellido
+ * @param PartidaG
+ * @param PartidaP
+ * @param PartidasJ 
+ */
+    public Players(String nombre, String apellido, int id, int PartidaG, int PartidaP, int PartidasJ) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.id = id;
+        this.PartidaG = PartidaG;
+        this.PartidaP = PartidaP;
+        this.PartidasJ = PartidasJ;
     }
 
     /**
@@ -17,7 +32,7 @@ public class Players implements Comparable<Players> {
      * @param nombre
      * @param apellido
      */
-    public Players(Ficha ficha,String nombre, String apellido) {
+    public Players(Ficha ficha, String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.id = generarid();

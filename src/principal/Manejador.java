@@ -1,23 +1,22 @@
 package principal;
 
-import interfazGrafica.Registro;
+import interfazGrafica.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Jugadores.Players;
 import Tablero.Dado;
 import Tablero.Ficha.Ficha;
-import Tablero.Posibilidades.Avanzar;
-import Tablero.Posibilidades.Casilla;
-import Tablero.Posibilidades.PIerdeTurno;
-import Tablero.Posibilidades.Retrocede;
-import Tablero.Posibilidades.bajada;
-import Tablero.Posibilidades.subida;
+import Tablero.Posibilidades.*;
 import Tablero.Tablero;
 import interfazGrafica.Tablerolable;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import Archivos.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -38,6 +37,9 @@ public class Manejador {
     private bajada ba;
     private Retrocede r;
     private Vector<Casilla> cas;
+    private EscritorBinario esc;
+    private Reporte repor;
+
 
     public Manejador() {
         this.rg = new Registro();
@@ -53,6 +55,10 @@ public class Manejador {
         this.ba = new bajada();
         this.r = new Retrocede();
         this.cas = new Vector<>();
+        this.esc = new EscritorBinario();
+        this.repor = new Reporte();
+        
+                
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -83,7 +89,9 @@ public class Manejador {
                 Collections.sort(jugadores);
                 contadorJugadores();
                 lab.tablaposicion(jugadores);
+                
                 rg.dispose();
+                
 
             }
         });
@@ -91,7 +99,7 @@ public class Manejador {
         this.lab.getLanzar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jugar();
+                    jugar();
                 MatrizArchivos();
 
             }
@@ -150,12 +158,12 @@ public class Manejador {
 
     }
 
-    public void VerificacionGanador(Players jug) {
+    public void VerificacionGanador(Players jug){
         if (jug.getFicha().getPosicion() >= tab.getMatriz().length + tab.getMatriz()[0].length) {
             int ganador = jug.getPartidaG();
             ganador += 1;
             jug.setPartidaG(ganador);
-            
+            JOptionPane.showMessageDialog(null, "Bien hecho Ganador"+jug.getNombre());
             for (Players j : getJugadores()) {
                 int pJugadas = j.getPartidasJ();
                 pJugadas += 1;
@@ -167,7 +175,16 @@ public class Manejador {
                     
                 }
             }
-            lab.setEnabled(false);
+            
+            repor.ReporteJugadoreas(jugadores);
+            lab.setVisible(false);
+            repor.setVisible(true);
+            try {
+                esc.guardarJugadores(jugadores);
+            } catch (IOException ex) {
+                Logger.getLogger(Manejador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
 
@@ -196,7 +213,7 @@ public class Manejador {
     /**
      * Metodo para la jugabilidad
      */
-    private void jugar() {
+    private void jugar(){
         Players jugador = getJugadores().get(0);
         String posicion = "";
         jugador.getFicha().aumentarPosicion(dado.Dadod(lab.getDadoun(), lab.getDado2s()));
@@ -205,19 +222,19 @@ public class Manejador {
                 for (int j = 0; j < tab.getMatriz()[0].length; j++) {
                     if ((i + j) == jugador.getFicha().getPosicion()) {
                         posicion = tab.comparar(tab.getMatriz()[i][j].getText());
-                        break;
+                        
                     }
 
                 }
             }
             switch (posicion) {
-                case "Turno":
+                case "pierde":
                     pt.Accion(jugador);
                     break;
                 case "subida":
                     sub.Accion(jugador);
                     break;
-                case "retorc":
+                case "Retro":
                     r.Accion(jugador);
                     break;
                 case "bajar":
