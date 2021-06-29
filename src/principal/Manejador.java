@@ -7,6 +7,7 @@ import Jugadores.Players;
 import Tablero.Dado;
 import Tablero.Ficha.Ficha;
 import Tablero.Posibilidades.Avanzar;
+import Tablero.Posibilidades.Casilla;
 import Tablero.Posibilidades.PIerdeTurno;
 import Tablero.Posibilidades.Retrocede;
 import Tablero.Posibilidades.bajada;
@@ -36,8 +37,7 @@ public class Manejador {
     private subida sub;
     private bajada ba;
     private Retrocede r;
-    private Partida part;
-
+    private Vector<Casilla> cas;
 
     public Manejador() {
         this.rg = new Registro();
@@ -48,11 +48,11 @@ public class Manejador {
         this.horario = new Tiempo(lab.getHorario());
         this.tab = new Tablero(lab.getjPanel1());
         this.pt = new PIerdeTurno();
-        this.p  = new Avanzar();
-        this.sub  = new subida();
-        this.ba  = new bajada();
-        this.r  = new Retrocede();
-        this.part = new Partida();
+        this.p = new Avanzar();
+        this.sub = new subida();
+        this.ba = new bajada();
+        this.r = new Retrocede();
+        this.cas = new Vector<>();
 
         this.rg.getIngresar().addActionListener(new ActionListener() {
             @Override
@@ -91,6 +91,7 @@ public class Manejador {
         this.lab.getLanzar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jugar();
                 dado.Dadod(lab.getDadoun(), lab.getDado2s());
                 MatrizArchivos();
                 siguienteJugador();
@@ -98,6 +99,11 @@ public class Manejador {
 
             }
         });
+        this.cas.add(p);
+        this.cas.add(pt);
+        this.cas.add(sub);
+        this.cas.add(ba);
+        this.cas.add(r);
     }
 
     public void siguienteJugador() {
@@ -114,7 +120,7 @@ public class Manejador {
     public void registrarJugador(String nombre, String apellido) {
         if (contador < 6) {
             Ficha ficha = new Ficha(ficha(contador));
-            Players jugador = new Players(ficha ,nombre, apellido);
+            Players jugador = new Players(ficha, nombre, apellido);
             jugadores.add(jugador);
             contador++;
         } else {
@@ -128,43 +134,81 @@ public class Manejador {
     public void contadorJugadores() {
         if (contador > 1) {
             lab.setVisible(true);
-            tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()),pt,p,sub,ba,r);
+            tab.crearMatriz(Integer.parseInt(rg.getNumFilas().getText()), Integer.parseInt(rg.getNumeroColum().getText()), pt, p, sub, ba, r);
             horario.start();
         } else {
             JOptionPane.showMessageDialog(null, "Debe se minimo 2 Jugadores");
         }
     }
-        public void MatrizArchivos() {
+
+    public void MatrizArchivos() {
         for (int i = 0; i < tab.getMatriz().length; i++) {
             for (int j = 0; j < tab.getMatriz()[0].length; j++) {
-                 System.out.println(tab.getMatriz()[i][j].getName()); 
-                
+                System.err.println(tab.getMatriz()[i][j].getText());
+
             }
         }
 
         tab.getPanel().repaint();
 
     }
-          public String ficha(int numero){
+
+    public String ficha(int numero) {
         if (numero == 1) {
             return "Amarillo";
         } else if (numero == 2) {
             return "Rojo";
-        } else if (numero ==3 ) {
+        } else if (numero == 3) {
             return "Azul";
         } else if (numero == 4) {
             return "Verde";
-        }if (numero == 5 ) {
+        }
+        if (numero == 5) {
             return "Cafe";
         } else {
             return "Negro";
         }
+    }
 
-        
+    private void jugar() {
+        Players jugador = getJugadores().get(0);
+        String posicion =""; 
+        jugador.getFicha().aumentarPosicion(dado.Dadod(lab.getDadoun(), lab.getDado2s()));
+        for (int i = 0; i < tab.getMatriz().length; i++) {
+            for (int j = 0; j < tab.getMatriz()[0].length; j++) {
+                if ((i+j) == jugador.getFicha().getPosicion()) {
+                    posicion = tab.comparar(tab.getMatriz()[i][j].getText());
+                    break;
+                }
+                
+
+            }
+        }
+        switch(posicion){
+            case "Turno" :
+                p.Accion(jugador);
+                break;
+            case "subida":
+                break;
+            case "retorc":
+                break;
+            case "bajar":
+                break;
+            case "avanza":
+                break;
+            case "FIN":
+                break;
+            default:
+                break;
+        }
     }
 
     public Vector<Players> getJugadores() {
         return jugadores;
+    }
+
+    public Vector<Casilla> getCas() {
+        return cas;
     }
 
 }

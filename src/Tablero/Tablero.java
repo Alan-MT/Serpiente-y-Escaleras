@@ -24,7 +24,7 @@ public class Tablero {
         fila = 600 / fila;
         columna = 300 / columna;
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
+            for (int j = matriz[0].length -1; j >=0; j--) {
                 if ((i + j) == 0) {
                     JLabel vacio4 = new JLabel("INICIO", JLabel.CENTER);
                     vacio4.setBounds(fila * i, columna * j, fila, columna);
@@ -51,39 +51,42 @@ public class Tablero {
                             break;
                         case 1:
                             JLabel lables = new JLabel();
+                            lables.setText("Turno");
                             pt.subirImagen(lables, fila, columna);
                             lables.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = lables;
                             break;
                         case 2:
                             JLabel avanza = new JLabel();
-
+                            avanza.setText("avanza");
                             p.subirImagen(avanza, fila, columna);
                             avanza.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = avanza;
                             break;
                         case 3:
                             JLabel subida = new JLabel();
-
+                            subida.setText("subida");
                             sub.subirImagen(subida, fila, columna);
                             subida.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = subida;
                             break;
                         case 4:
                             JLabel bajar = new JLabel();
-
+                            bajar.setText("bajar");
                             ba.subirImagen(bajar, fila, columna);
                             bajar.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = bajar;
                             break;
                         case 5:
                             JLabel retorc = new JLabel();
+                            retorc.setText("retorc");
                             r.subirImagen(retorc, fila, columna);
                             retorc.setBounds(fila * i, columna * j, fila, columna);
                             matriz[i][j] = retorc;
                             break;
                         case 6:
                             JLabel vacio1 = new JLabel();
+
                             vacio1.setBounds(fila * i, columna * j, fila, columna);
                             vacio1.setOpaque(true);
                             vacio1.setBackground(Color.YELLOW);
@@ -110,7 +113,7 @@ public class Tablero {
         }
 
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
+            for (int j = matriz[0].length -1; j >=0; j--) {
                 panel.add(matriz[i][j]);
             }
         }
@@ -118,18 +121,23 @@ public class Tablero {
         panel.repaint();
     }
 
-
-    public String comparar(Object ob) {
-        if (ob instanceof PIerdeTurno) {
+    public String comparar(String tx) {
+        if (tx == "Turno") {
             return "pierde";
-        } else if (ob instanceof Avanzar) {
+        } else if (tx == "subida") {
             return "avanza";
-        } else if (ob instanceof Retrocede) {
+        } else if (tx == "retorc") {
             return "Retro";
-        } else if (ob instanceof bajada) {
+        } else if (tx == "bajar") {
             return "bajar";
-        } else if (ob instanceof subida) {
+        } else if (tx == "avanza") {
             return "subir";
+        } else if (tx == "INICIO") {
+            return "subir";
+        } else if (tx == "FIN") {
+            return "subir";
+        } else if (tx == null) {
+            return "nada";
         } else {
             return "nada";
         }
