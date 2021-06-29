@@ -21,7 +21,7 @@ import java.util.Vector;
 public class LectorBinario {
      
 
-    public void leerAeropuertos(Vector<Players> jug) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void leerjugadoras(Vector<Players> jug) throws FileNotFoundException, IOException, ClassNotFoundException {
         String[] archivos = EscritorBinario.FILE_JUGADORES.list();
         for (int i = 0; i < archivos.length; i++) {
             ObjectInputStream lector;
