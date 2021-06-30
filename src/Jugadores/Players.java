@@ -1,8 +1,9 @@
 package Jugadores;
 
 import Tablero.Ficha.Ficha;
+import java.io.Serializable;
 
-public class Players implements Comparable<Players> {
+public class Players implements Comparable<Players>,Serializable {
 
     private String nombre, apellido;
     private int id, PartidaG, PartidaP, PartidasJ;

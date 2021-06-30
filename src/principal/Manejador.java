@@ -39,6 +39,7 @@ public class Manejador {
     private Vector<Casilla> cas;
     private EscritorBinario esc;
     private Reporte repor;
+    private Menu menu;
 
 
     public Manejador() {
@@ -57,6 +58,7 @@ public class Manejador {
         this.cas = new Vector<>();
         this.esc = new EscritorBinario();
         this.repor = new Reporte();
+        this.menu = new Menu();
         
                 
 
@@ -100,7 +102,7 @@ public class Manejador {
             @Override
             public void actionPerformed(ActionEvent e) {
                     jugar();
-                MatrizArchivos();
+               
 
             }
         });
@@ -146,7 +148,7 @@ public class Manejador {
         }
     }
 
-    public void MatrizArchivos() {
+   /* public void MatrizArchivos() {
         for (int i = 0; i < tab.getMatriz().length; i++) {
             for (int j = 0; j < tab.getMatriz()[0].length; j++) {
                 System.err.println(tab.getMatriz()[i][j].getText());
@@ -156,7 +158,7 @@ public class Manejador {
 
         tab.getPanel().repaint();
 
-    }
+    }*/
 
     public void VerificacionGanador(Players jug){
         if (jug.getFicha().getPosicion() >= tab.getMatriz().length + tab.getMatriz()[0].length) {
@@ -179,6 +181,8 @@ public class Manejador {
             repor.ReporteJugadoreas(jugadores);
             lab.setVisible(false);
             repor.setVisible(true);
+            menu.setVisible(true);
+            
             try {
                 esc.guardarJugadores(jugadores);
             } catch (IOException ex) {

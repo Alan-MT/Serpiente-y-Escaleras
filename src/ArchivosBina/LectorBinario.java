@@ -26,12 +26,11 @@ public class LectorBinario {
         for (int i = 0; i < archivos.length; i++) {
             ObjectInputStream lector;
             String archivo = archivos[i];
-            lector = new ObjectInputStream(new FileInputStream(EscritorBinario.FILE_JUGADORES + "/ " + archivo));
-            Players av = (Players) lector.readObject();
-            jug.add(av);
+            lector = new ObjectInputStream(new FileInputStream(EscritorBinario.FILE_JUGADORES + "/" + archivo));
+            Players jg = (Players) lector.readObject();
+            jug.add(jg);
             lector.close();
         }
-    }
-
-
+      }
+    
 }

@@ -1,6 +1,8 @@
 package Tablero.Ficha;
 
-public class Ficha {
+import java.io.Serializable;
+
+public class Ficha implements Serializable {
 
     private int posicion;
     private String ficha;
